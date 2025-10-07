@@ -7,17 +7,16 @@
 using namespace std;
 
 // Function to apply forward chaining
-set<string> apply_forward_chaining(vector<string> initial_facts,
-                                   vector<pair<vector<string>, string>> inference_rules) {
-    set<string> known_facts(initial_facts.begin(), initial_facts.end());
+set<string> apply_forward_chaining(vector<string> initial_facts, vector<pair<vector<string>, string>> inference_rules) {
+    set<string> known_facts(initial_facts.begin(), initial_facts.end()); // Use a set for easy lookup
     bool new_fact_found = true;
 
-    while (new_fact_found) {
+    while (new_fact_found) { // Continue until no new facts are found
         new_fact_found = false;
 
         for (auto &rule : inference_rules) {
-            vector<string> prerequisites = rule.first;
-            string outcome = rule.second;
+            vector<string> prerequisites = rule.first; // Conditions
+            string outcome = rule.second; // Conclusion
 
             // Check if all prerequisites are met
             bool prerequisites_met = all_of(prerequisites.begin(), prerequisites.end(),
